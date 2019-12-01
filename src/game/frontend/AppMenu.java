@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public class AppMenu extends MenuBar {
 
-    public AppMenu() {
+    public AppMenu(CustomStage primaryStage) {
         Menu file = new Menu("Archivo");
         MenuItem exitMenuItem = new MenuItem("Salir");
         MenuItem goBackMenuItem = new MenuItem("Volver al menu principal");
@@ -26,8 +26,8 @@ public class AppMenu extends MenuBar {
             }
         });
         goBackMenuItem.setOnAction(event -> {
-            Stage primaryStage = (Stage)((Node) event.getSource()).getScene().getWindow();
-            primaryStage.setScene(primaryStage.);
+            primaryStage.originalStage.setScene(primaryStage.mainMenuScene);
+
         });
         file.getItems().addAll(goBackMenuItem, exitMenuItem);
         Menu help = new Menu("Ayuda");

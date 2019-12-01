@@ -18,14 +18,14 @@ import javafx.stage.Stage;
 
 public class MainMenu  {
 
-    private static void playLevel (Stage primaryStage, CandyGame level){
+    private static void playLevel (CustomStage primaryStage, CandyGame level){
         CandyFrame levelGameFrame = new CandyFrame(level, primaryStage);
         Scene levelScene = new Scene(levelGameFrame);
-        primaryStage.setScene(levelScene);
-        primaryStage.show();
+        primaryStage.originalStage.setScene(levelScene);
+        primaryStage.originalStage.show();
     }
 
-    public static VBox getFrame(Stage primaryStage) {
+    public static VBox getFrame(CustomStage primaryStage) {
         VBox initialMenuFrame = new VBox();
         initialMenuFrame.setSpacing(20);
         initialMenuFrame.setAlignment(Pos.TOP_CENTER);

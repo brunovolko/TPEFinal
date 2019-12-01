@@ -15,13 +15,14 @@ public class GameApp extends Application {
 	}
 
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage originalStage) {
+		CustomStage primaryStage = new CustomStage(originalStage);
 
-		primaryStage.setResizable(false);
+		originalStage.setResizable(false);
 
-		mainMenuScene = new Scene(MainMenu.getFrame(primaryStage), 800, 600);
-		primaryStage.setScene(mainMenuScene);
-		primaryStage.show();
+
+		originalStage.setScene(primaryStage.mainMenuScene);
+		originalStage.show();
 
 
 

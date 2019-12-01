@@ -24,7 +24,7 @@ public class CandyFrame extends VBox {
 	private Point2D lastPoint;
 	private CandyGame game;
 
-	public CandyFrame(CandyGame game, Stage primaryStage) {
+	public CandyFrame(CandyGame game, CustomStage primaryStage) {
 
 		this.game = game;
 		getChildren().add(new AppMenu(primaryStage));
