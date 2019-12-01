@@ -20,13 +20,19 @@ import javafx.scene.control.Button;
 
 
 import java.awt.*;
+import java.util.logging.Level;
 
 public class GameApp extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
 	}
-
+	private void playLevel (Stage primaryStage, CandyGame level){
+		CandyFrame levelGameFrame = new CandyFrame(level);
+		Scene levelScene = new Scene(levelGameFrame);
+		primaryStage.setScene(levelScene);
+		primaryStage.show();
+	}
 	@Override
 	public void start(Stage primaryStage) {
 
@@ -53,12 +59,13 @@ public class GameApp extends Application {
 
 
 		btnLevel1.setOnAction(event -> {
-			CandyGame level1Game = new CandyGame(Level1.class);
+			playLevel(primaryStage, new CandyGame(Level1.class));
+			/*CandyGame level1Game = new CandyGame(Level1.class);
 			CandyFrame level1Frame = new CandyFrame(level1Game);
 			Scene level1Scene = new Scene(level1Frame);
 
 			primaryStage.setScene(level1Scene);
-			primaryStage.show();
+			primaryStage.show();*/
 		});
 
 		VBox levelButtonsFrame = new VBox();
