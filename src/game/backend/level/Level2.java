@@ -10,7 +10,7 @@ import game.backend.move.Move;
 public class Level2 extends Level1 {
 	
 	private static int REQUIRED_SCORE = 5000; 
-	private static int MAX_MOVES = 20; 
+	private static int MAX_MOVES = 35;
 	
 	private Cell wallCell;
 	private Cell candyGenCell;
@@ -112,7 +112,7 @@ public class Level2 extends Level1 {
 		}
 
 		public boolean playerWon() {
-			return getScore() > requiredScore && nonGoldenCells == 0;
+			return /*getScore() > requiredScore &&*/ nonGoldenCells == 0;
 		}
 
 		@Override

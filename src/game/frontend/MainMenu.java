@@ -39,13 +39,13 @@ public class MainMenu  {
         chooseLevelText.setFont(Font.font("Arial", FontWeight.BOLD, 24));
 
 
-        Button btnLevel1 = new Button("Nivel 1");
+        Button btnLevel1 = new Button("Level 1");
         btnLevel1.setBackground(new Background(new BackgroundFill(Color.web("#03adfc"), CornerRadii.EMPTY, Insets.EMPTY)));
         btnLevel1.setStyle("-fx-text-fill: #ffffff;");
         btnLevel1.setFont(Font.font("Arial", FontWeight.BOLD, 24));
         btnLevel1.setPadding(new Insets(10, 10, 10, 10));
 
-        Button btnLevel2 = new Button("Nivel 2");
+        Button btnLevel2 = new Button("Level 2");
         btnLevel2.setBackground(new Background(new BackgroundFill(Color.web("#03adfc"), CornerRadii.EMPTY, Insets.EMPTY)));
         btnLevel2.setStyle("-fx-text-fill: #ffffff;");
         btnLevel2.setFont(Font.font("Arial", FontWeight.BOLD, 24));
