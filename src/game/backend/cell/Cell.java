@@ -10,10 +10,13 @@ public class Cell {
 	private Grid grid;
 	private Cell[] around = new Cell[Direction.values().length];
 	private Element content;
+	private boolean golden;
+
 	
 	public Cell(Grid grid) {
 		this.grid = grid;
 		this.content = new Nothing();
+		golden = false;
 	}
 	
 	public void setAround(Cell up, Cell down, Cell left, Cell right) {
@@ -90,6 +93,13 @@ public class Cell {
 	
 	public void setContent(Element content) {
 		this.content = content;
+	}
+
+	public boolean isGolden() {
+		return golden;
+	}
+	public void makeGolden() {
+		golden = true;
 	}
 
 }

@@ -2,6 +2,7 @@ package game.frontend;
 
 import game.backend.CandyGame;
 import game.backend.level.Level1;
+import game.backend.level.Level2;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -44,15 +45,25 @@ public class MainMenu  {
         btnLevel1.setFont(Font.font("Arial", FontWeight.BOLD, 24));
         btnLevel1.setPadding(new Insets(10, 10, 10, 10));
 
+        Button btnLevel2 = new Button("Level 2");
+        btnLevel2.setBackground(new Background(new BackgroundFill(Color.web("#03adfc"), CornerRadii.EMPTY, Insets.EMPTY)));
+        btnLevel2.setStyle("-fx-text-fill: #ffffff;");
+        btnLevel2.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+        btnLevel2.setPadding(new Insets(10, 10, 10, 10));
+
 
 
         btnLevel1.setOnAction(event -> {
             playLevel(primaryStage, new CandyGame(Level1.class));
         });
 
+        btnLevel2.setOnAction(event -> {
+            playLevel(primaryStage, new CandyGame(Level2.class));
+        });
+
         VBox levelButtonsFrame = new VBox();
         levelButtonsFrame.setAlignment(Pos.CENTER);
-        levelButtonsFrame.getChildren().addAll(btnLevel1);
+        levelButtonsFrame.getChildren().addAll(btnLevel1, btnLevel2);
         levelButtonsFrame.setSpacing(20);
 
 

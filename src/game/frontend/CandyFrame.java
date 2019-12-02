@@ -20,7 +20,7 @@ public class CandyFrame extends VBox {
 
 	private BoardPanel boardPanel;
 	private ScorePanel scorePanel;
-	private ImageManager images;
+
 	private Point2D lastPoint;
 	private CandyGame game;
 
@@ -28,7 +28,7 @@ public class CandyFrame extends VBox {
 
 		this.game = game;
 		getChildren().add(new AppMenu(primaryStage));
-		images = new ImageManager();
+
 		boardPanel = new BoardPanel(game.getSize(), game.getSize(), CELL_SIZE);
 		getChildren().add(boardPanel);
 		scorePanel = new ScorePanel();
@@ -38,6 +38,7 @@ public class CandyFrame extends VBox {
 		game.addGameListener(listener = new GameListener() {
 			@Override
 			public void gridUpdated() {
+
 				Timeline timeLine = new Timeline();
 				Duration frameGap = Duration.millis(100);
 				Duration frameTime = Duration.ZERO;
@@ -46,10 +47,8 @@ public class CandyFrame extends VBox {
 						int finalI = i;
 						int finalJ = j;
 						Cell cell = CandyFrame.this.game.get(i, j);
-						Element element = cell.getContent();
-						Image image = images.getImage(element);
-						timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, null)));
-						timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, image)));
+
+						timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, cell)));
 					}
 					frameTime = frameTime.add(frameGap);
 				}
