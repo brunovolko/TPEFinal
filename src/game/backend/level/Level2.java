@@ -7,17 +7,19 @@ import game.backend.cell.Cell;
 import game.backend.element.Wall;
 import game.backend.move.Move;
 
-public class Level2 extends Grid {
+public class Level2 extends Level1 {
 	
 	private static int REQUIRED_SCORE = 5000; 
 	private static int MAX_MOVES = 20; 
 	
 	private Cell wallCell;
 	private Cell candyGenCell;
+
+	private int nonGoldenCells;
 	
 	@Override
 	protected GameState newState() {
-		return new Level2State(REQUIRED_SCORE, MAX_MOVES);
+		return new Level2State(REQUIRED_SCORE, MAX_MOVES, SIZE*SIZE);
 	}
 
 	@Override
@@ -66,9 +68,9 @@ public class Level2 extends Grid {
 			fallElements();
 			state().addMove();
 			if(move.validHorizontalMove())
-				setGoldenRow(i1);
+				newGoldenCells(setGoldenRow(i1));
 			else
-				setGoldenColumn(j1);
+				newGoldenCells(setGoldenColumn(j1));
 			return true;
 		} else {
 			swapContent(i1, j1, i2, j2);
@@ -77,31 +79,47 @@ public class Level2 extends Grid {
 
 	}
 
-	private void setGoldenRow(int row) {
+	private int setGoldenRow(int row) {
+		int newGoldenCells = 0;
 		for(int i = 0; i < SIZE; i++)
-			g()[row][i].makeGolden();
+			if(!g()[row][i].isGolden()) {
+				g()[row][i].makeGolden();
+				newGoldenCells++;
+			}
+		return newGoldenCells;
+
 	}
-	private void setGoldenColumn(int column) {
+	private int setGoldenColumn(int column) {
+		int newGoldenCells = 0;
 		for(int i = 0; i < SIZE; i++)
-			g()[i][column].makeGolden();
+			if(!g()[i][column].isGolden()) {
+				g()[i][column].makeGolden();
+				newGoldenCells++;
+			}
+		return newGoldenCells;
+	}
+
+	private void newGoldenCells(int newGoldenCells) {
+		nonGoldenCells -= newGoldenCells;
 	}
 	
-	private class Level2State extends GameState {
-		private long requiredScore;
-		private long maxMoves;
+	private class Level2State extends Level1State {
+
 		
-		public Level2State(long requiredScore, int maxMoves) {
-			this.requiredScore = requiredScore;
-			this.maxMoves = maxMoves;
+		public Level2State(long requiredScore, int maxMoves, int cellsNumber) {
+			super(requiredScore,maxMoves);
+			nonGoldenCells = cellsNumber;
 		}
-		
-		public boolean gameOver() {
-			return playerWon() || getMoves() >= maxMoves;
-		}
-		
+
 		public boolean playerWon() {
-			return getScore() > requiredScore;
+			return getScore() > requiredScore && nonGoldenCells == 0;
 		}
+
+		@Override
+		public String getPrintableScore(){
+			return "Restantes: "+nonGoldenCells + " - Puntaje: "+getScore();
+		}
+
 	}
 
 }

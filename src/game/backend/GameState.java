@@ -12,6 +12,8 @@ public abstract class GameState {
 	public long getScore(){
 		return score;
 	}
+
+	public String getPrintableScore() { return String.valueOf(score); }
 	
 	public void addMove() {
 		moves++;

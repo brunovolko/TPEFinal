@@ -40,8 +40,8 @@ public class CandyGame implements GameListener {
 		grid.addListener(listener);
 	}
 	
-	public long getScore() {
-		return state.getScore();
+	public String getScore() {
+		return state.getPrintableScore();
 	}
 	
 	public boolean isFinished() {

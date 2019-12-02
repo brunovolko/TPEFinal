@@ -65,8 +65,8 @@ public class Level1 extends Grid {
 		return ret;
 	}
 	
-	private class Level1State extends GameState {
-		private long requiredScore;
+	protected class Level1State extends GameState {
+		protected long requiredScore;
 		private long maxMoves;
 		
 		public Level1State(long requiredScore, int maxMoves) {
