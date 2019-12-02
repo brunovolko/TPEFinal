@@ -149,4 +149,8 @@ public abstract class Grid {
 		}
 	}
 
+	public MoveMaker getMoveMaker() {
+		return moveMaker;
+	}
+
 }

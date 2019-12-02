@@ -59,25 +59,31 @@ public class Level2 extends Grid {
 	
 	@Override
 	public boolean tryMove(int i1, int j1, int i2, int j2) {
-		/*Move move = moveMaker.getMove(i1, j1, i2, j2);
+		Move move = super.getMoveMaker().getMove(i1, j1, i2, j2);
 		swapContent(i1, j1, i2, j2);
 		if (move.isValid()) {
 			move.removeElements();
 			fallElements();
+			state().addMove();
+			if(move.validHorizontalMove())
+				setGoldenRow(i1);
+			else
+				setGoldenColumn(j1);
 			return true;
 		} else {
 			swapContent(i1, j1, i2, j2);
 			return false;
-		}*/
-
-		boolean ret;
-		if (ret = super.tryMove(i1, j1, i2, j2)) {
-			state().addMove();
 		}
-		if(ret) {
 
-		}
-		return ret;
+	}
+
+	private void setGoldenRow(int row) {
+		for(int i = 0; i < SIZE; i++)
+			g()[row][i].makeGolden();
+	}
+	private void setGoldenColumn(int column) {
+		for(int i = 0; i < SIZE; i++)
+			g()[i][column].makeGolden();
 	}
 	
 	private class Level2State extends GameState {

@@ -18,9 +18,18 @@ public abstract class Move {
 		this.i2 = i2;
 		this.j2 = j2;
 	}
+
+	public boolean validHorizontalMove() {
+		return (i1 == i2 && Math.abs(j1-j2) == 1);
+	}
+
+	public boolean validVerticalMove() {
+		return (j1 == j2 && Math.abs(i1-i2) == 1);
+	}
 	
 	public boolean isValid() {
-		if ( (i1 == i2 && Math.abs(j1-j2) == 1) || (j1 == j2 && Math.abs(i1-i2) == 1)) {
+		//Agregamos los metodos isHorizontalMove y isVerticalMove para mejorar el estilo y por necesidad del nivel 2
+		if ( validHorizontalMove() || validVerticalMove() ) {
 			return internalValidation();
 		}
 		return false;
