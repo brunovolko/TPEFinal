@@ -2,6 +2,7 @@ package game.backend;
 
 import game.backend.cell.Cell;
 import game.backend.element.Element;
+import game.backend.level.Level3;
 
 import java.util.function.Function;
 
@@ -43,6 +44,7 @@ public class CandyGame implements GameListener {
 	}
 	
 	public String getScore() {
+
 		return state.getPrintableScore();
 	}
 

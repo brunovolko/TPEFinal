@@ -80,7 +80,18 @@ public class CandyFrame extends VBox {
 						Platform.runLater(new TimerTask() {
 							@Override
 							public void run() {
-								scorePanel.updateScore(game().getScore());//"T. Restante: " + /*remainingSeconds--*/game(). + " Puntaje: "+game().getScore()
+
+								String message = game().getScore();
+
+								scorePanel.updateScore(message);//"T. Restante: " + /*remainingSeconds--*/game(). + " Puntaje: "+game().getScore()
+								if (game().isFinished()) {
+									if (game().playerWon()) {
+										message = message + " Finished - Player Won!";
+									} else {
+										message = message + " Finished - Loser !";
+									}
+								}
+								scorePanel.updateScore(message);
 							}
 						});
 					}

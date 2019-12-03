@@ -13,7 +13,7 @@ public class Level3 extends Level1 {
 	private final static int REQUIRED_SCORE = 5000;
 	private final static int MAX_MOVES = 20;
 	private final static int TIME_PROVIDER_CANDIES = 10;
-	public final static int INITIAL_TIME_LIMIT = 40;
+	public final static int INITIAL_TIME_LIMIT = 10;
 
 	private int remainingSeconds;
 
@@ -61,9 +61,18 @@ public class Level3 extends Level1 {
 		@Override
 		public String getPrintableScore(){
 			String returnableScore = "T. Restante: "+remainingSeconds + " - Puntaje: "+getScore();
-			if(!wasMoved) //Osea el getPrintableScore se debio a que paso un segundo
+			if(remainingSeconds>0 && !wasMoved)
+			{
+
 				remainingSeconds--;
+			}
+		/*	if(!wasMoved) //Osea el getPrintableScore se debio a que paso un segundo
+				remainingSeconds--;*/
 			return returnableScore;
+		}
+		@Override
+		public boolean gameOver(){
+			return remainingSeconds==0 || playerWon();
 		}
 		/*public String getImprovedPrintableScore(){
 			return "T. Restante: "+remainingSeconds-- + " - Puntaje: "+getScore();
