@@ -5,14 +5,20 @@ import game.backend.GameListener;
 import game.backend.cell.Cell;
 import game.backend.element.Element;
 
+import game.backend.level.Level3;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Level;
 
 public class CandyFrame extends VBox {
 
@@ -37,6 +43,8 @@ public class CandyFrame extends VBox {
 		scorePanel.updateScore(game().getScore()); //Para mostrar el puntaje inicial de la forma adecuada a cada nivel
 		GameListener listener;
 		game.addGameListener(listener = new GameListener() {
+			int remainingSeconds;
+			Timer timer = new Timer();
 			@Override
 			public void gridUpdated() {
 
@@ -55,13 +63,38 @@ public class CandyFrame extends VBox {
 				}
 				timeLine.play();
 			}
+
 			@Override
 			public void cellExplosion(Element e) {
 				//
 			}
+
+			@Override
+			public void timeUpdated(int newRemainingSeconds) { //Se usa si es necesario
+				remainingSeconds = newRemainingSeconds;
+
+				//timer.cancel(); //Por si ya se estaba ejecutando.
+				timer.scheduleAtFixedRate(new TimerTask() {
+					@Override
+					public void run() {
+						Platform.runLater(new TimerTask() {
+							@Override
+							public void run() {
+								scorePanel.updateScore(game().getScore());//"T. Restante: " + /*remainingSeconds--*/game(). + " Puntaje: "+game().getScore()
+							}
+						});
+					}
+				}, 0, 1000);
+
+			}
 		});
 
 		listener.gridUpdated();
+
+		if(game.isLevel(Level3.class))
+			listener.timeUpdated(Level3.INITIAL_TIME_LIMIT);
+
+
 
 		addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 			if (lastPoint == null) {

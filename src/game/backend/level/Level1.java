@@ -12,7 +12,7 @@ public class Level1 extends Grid {
 	private final static int MAX_MOVES = 20;
 	
 	private Cell wallCell;
-	private Cell candyGenCell;
+	protected Cell candyGenCell; // Protected pues luego Level3 hereda de Level1 y la usa.
 
 	public Level1() {
 		super();

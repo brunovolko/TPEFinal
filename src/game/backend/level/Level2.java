@@ -11,9 +11,7 @@ public class Level2 extends Level1 {
 	
 	private final static int REQUIRED_SCORE = 5000;
 	private final static int MAX_MOVES = 20;
-	
-	private Cell wallCell;
-	private Cell candyGenCell;
+
 
 	private int nonGoldenCells;
 	
@@ -75,6 +73,7 @@ public class Level2 extends Level1 {
 			nonGoldenCells = cellsNumber;
 		}
 
+		@Override
 		public boolean playerWon() {
 			return /*getScore() > requiredScore &&*/ nonGoldenCells == 0;
 		}

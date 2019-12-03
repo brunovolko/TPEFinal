@@ -20,6 +20,9 @@ public abstract class Grid {
 	private Cell[][] g = new Cell[SIZE][SIZE];
 	private Map<Cell, Point> gMap = new HashMap<>();
 	private GameState state;
+
+
+
 	private List<GameListener> listeners = new ArrayList<>();
 	private MoveMaker moveMaker;
 	private FigureDetector figureDetector;
@@ -133,6 +136,10 @@ public abstract class Grid {
 	
 	public void addListener(GameListener listener) {
 		listeners.add(listener);
+	}
+
+	protected List<GameListener> getListeners() {
+		return listeners;
 	}
 	
 	public void wasUpdated(){

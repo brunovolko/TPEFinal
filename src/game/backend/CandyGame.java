@@ -3,6 +3,8 @@ package game.backend;
 import game.backend.cell.Cell;
 import game.backend.element.Element;
 
+import java.util.function.Function;
+
 public class CandyGame implements GameListener {
 	
 	private Class<?> levelClass;
@@ -43,6 +45,8 @@ public class CandyGame implements GameListener {
 	public String getScore() {
 		return state.getPrintableScore();
 	}
+
+
 	
 	public boolean isFinished() {
 		return state.gameOver();
@@ -60,6 +64,15 @@ public class CandyGame implements GameListener {
 	@Override
 	public void gridUpdated() {
 		//
+	}
+
+	@Override
+	public void timeUpdated(int remainingSeconds) {
+		//
+	}
+
+	public boolean isLevel(Class<?> clazz) {
+		return clazz.equals(levelClass);
 	}
 
 }
