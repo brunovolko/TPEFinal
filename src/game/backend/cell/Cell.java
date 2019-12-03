@@ -3,6 +3,7 @@ package game.backend.cell;
 import game.backend.Grid;
 import game.backend.element.Element;
 import game.backend.element.Nothing;
+import game.backend.element.timeProviderCandy;
 import game.backend.move.Direction;
 
 public class Cell {
@@ -11,6 +12,7 @@ public class Cell {
 	private Cell[] around = new Cell[Direction.values().length];
 	private Element content;
 	private boolean golden;
+	private boolean isTimeProvider;
 
 	
 	public Cell(Grid grid) {
@@ -102,4 +104,5 @@ public class Cell {
 		golden = true;
 	}
 
+	public boolean isTimeProvider() { return getContent() instanceof timeProviderCandy; }
 }

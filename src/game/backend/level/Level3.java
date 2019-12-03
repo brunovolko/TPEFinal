@@ -3,29 +3,37 @@ package game.backend.level;
 import game.backend.GameState;
 import game.backend.Grid;
 import game.backend.cell.CandyGeneratorCell;
+import game.backend.cell.CandyGeneratorTimeProviderCell;
 import game.backend.cell.Cell;
 import game.backend.element.Wall;
 
-public class Level1 extends Grid {
+public class Level3 extends Grid {
 	
 	private final static int REQUIRED_SCORE = 5000;
 	private final static int MAX_MOVES = 20;
+	private final static int TIME_PROVIDER_CANDIES = 10;
 	
 	private Cell wallCell;
 	private Cell candyGenCell;
 
-	public Level1() {
+
+
+
+	public Level3() {
 		super();
-		candyGenCell = new CandyGeneratorCell(this);
+		//candyGenCell = new CandyGeneratorTimeProviderCell(this, TIME_PROVIDER_CANDIES);
 	}
+
 	
 	@Override
 	protected GameState newState() {
-		return new Level1State(REQUIRED_SCORE, MAX_MOVES);
+		return new Level3State(REQUIRED_SCORE, MAX_MOVES);
 	}
 
 	@Override
 	protected void fillCells() {
+
+		candyGenCell = new CandyGeneratorTimeProviderCell(this, TIME_PROVIDER_CANDIES);
 		
 		wallCell = new Cell(this);
 		wallCell.setContent(new Wall());
@@ -70,11 +78,11 @@ public class Level1 extends Grid {
 		return ret;
 	}
 	
-	protected class Level1State extends GameState {
+	protected class Level3State extends GameState {
 		protected long requiredScore;
 		private long maxMoves;
 		
-		public Level1State(long requiredScore, int maxMoves) {
+		public Level3State(long requiredScore, int maxMoves) {
 			this.requiredScore = requiredScore;
 			this.maxMoves = maxMoves;
 		}
