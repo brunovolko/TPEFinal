@@ -13,7 +13,7 @@ public class Level3 extends Level1 {
 	private final static int REQUIRED_SCORE = 5000;
 	private final static int MAX_MOVES = 20;
 	private final static int TIME_PROVIDER_CANDIES = 10;
-	public final static int INITIAL_TIME_LIMIT = 10;
+	public final static int INITIAL_TIME_LIMIT = 30;
 
 	private int remainingSeconds;
 
@@ -46,6 +46,8 @@ public class Level3 extends Level1 {
 			state().addMove();
 		}
 		wasMoved = ret;
+		if(wasMoved)
+			System.out.println("Was moved");
 		return ret;
 	}
 	
@@ -67,10 +69,9 @@ public class Level3 extends Level1 {
 			String returnableScore = "T. Restante: "+remainingSeconds + " - Puntaje: "+getScore();
 			if(remainingSeconds>0 && !wasMoved && !firstTime)
 			{
-				remainingSeconds--;
+					remainingSeconds--;
 			}
-			/*if(!wasMoved) //Osea el getPrintableScore se debio a que paso un segundo
-				remainingSeconds--;*/
+			wasMoved = false;
 			return returnableScore;
 		}
 		@Override
