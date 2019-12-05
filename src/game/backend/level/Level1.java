@@ -8,7 +8,7 @@ import game.backend.element.Wall;
 
 public class Level1 extends Grid {
 	
-	private final static int REQUIRED_SCORE = 500;//5000;
+	private final static int REQUIRED_SCORE = 5000;
 	private final static int MAX_MOVES = 20;
 	
 	private Cell wallCell;

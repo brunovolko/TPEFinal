@@ -40,7 +40,7 @@ public class CandyFrame extends VBox {
 		scorePanel = new ScorePanel();
 		getChildren().add(scorePanel);
 		game.initGame();
-		scorePanel.updateScore(game().getScore()); //Para mostrar el puntaje inicial de la forma adecuada a cada nivel
+
 		GameListener listener;
 		game.addGameListener(listener = new GameListener() {
 			int remainingSeconds;
@@ -81,14 +81,16 @@ public class CandyFrame extends VBox {
 							@Override
 							public void run() {
 
-								String message = game().getScore();
 
-								scorePanel.updateScore(message);
+
 
 								if (game().isFinished()) {
+									scorePanel.updateScore(game().getScore());
 									System.out.println("Game is finished");
 									scorePanel.setWin(game().playerWon());
 									timer.cancel();
+								} else {
+									scorePanel.updateScore(game().getScore());
 								}
 
 								System.out.println("Segun candyFrame van "+remainingSeconds+" s.");
@@ -105,6 +107,8 @@ public class CandyFrame extends VBox {
 
 		if(game.isLevel(Level3.class))
 			listener.timeUpdated(Level3.INITIAL_TIME_LIMIT);
+		else
+			scorePanel.updateScore(game().getScore()); //Para mostrar el puntaje inicial de la forma adecuada a cada nivel
 
 
 
