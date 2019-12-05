@@ -48,7 +48,6 @@ public class CandyGame implements GameListener {
 		return state.getPrintableScore();
 	}
 
-
 	
 	public boolean isFinished() {
 		return state.gameOver();

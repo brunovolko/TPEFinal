@@ -19,6 +19,8 @@ public class Level3 extends Level1 {
 
 	private boolean wasMoved;
 
+	private boolean firstTime = true;
+
 
 
 
@@ -60,19 +62,20 @@ public class Level3 extends Level1 {
 
 		@Override
 		public String getPrintableScore(){
+			firstTime = false;
+			System.out.println("Segun Level3 van " + remainingSeconds + " s.");
 			String returnableScore = "T. Restante: "+remainingSeconds + " - Puntaje: "+getScore();
-			if(remainingSeconds>0 && !wasMoved)
+			if(remainingSeconds>0 && !wasMoved && !firstTime)
 			{
-
 				remainingSeconds--;
 			}
-		/*	if(!wasMoved) //Osea el getPrintableScore se debio a que paso un segundo
+			/*if(!wasMoved) //Osea el getPrintableScore se debio a que paso un segundo
 				remainingSeconds--;*/
 			return returnableScore;
 		}
 		@Override
-		public boolean gameOver(){
-			return remainingSeconds==0 || playerWon();
+		public boolean gameOver() {
+			return remainingSeconds==0 || playerWon(); //HAY QUE REVISAR ESTO LOCO ----------------------------------------------------------------------------
 		}
 		/*public String getImprovedPrintableScore(){
 			return "T. Restante: "+remainingSeconds-- + " - Puntaje: "+getScore();

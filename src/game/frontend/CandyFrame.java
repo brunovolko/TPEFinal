@@ -83,15 +83,16 @@ public class CandyFrame extends VBox {
 
 								String message = game().getScore();
 
-								scorePanel.updateScore(message);//"T. Restante: " + /*remainingSeconds--*/game(). + " Puntaje: "+game().getScore()
-								if (game().isFinished()) {
-									if (game().playerWon()) {
-										message = message + " Finished - Player Won!";
-									} else {
-										message = message + " Finished - Loser !";
-									}
-								}
 								scorePanel.updateScore(message);
+
+								if (game().isFinished()) {
+									System.out.println("Game is finished");
+									scorePanel.setWin(game().playerWon());
+									timer.cancel();
+								}
+
+								System.out.println("Segun candyFrame van "+remainingSeconds+" s.");
+								remainingSeconds--;
 							}
 						});
 					}
@@ -117,14 +118,11 @@ public class CandyFrame extends VBox {
 					System.out.println("Get second = " +  newPoint);
 					game().tryMove((int)lastPoint.getX(), (int)lastPoint.getY(), (int)newPoint.getX(), (int)newPoint.getY());
 					String message = game().getScore();
-					if (game().isFinished()) {
-						if (game().playerWon()) {
-							message = message + " Finished - Player Won!";
-						} else {
-							message = message + " Finished - Loser !";
-						}
-					}
 					scorePanel.updateScore(message);
+					if (game().isFinished()) {
+						scorePanel.setWin(game().playerWon());
+					}
+
 					lastPoint = null;
 				}
 			}
