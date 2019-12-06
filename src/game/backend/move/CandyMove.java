@@ -3,6 +3,9 @@ package game.backend.move;
 import game.backend.Figure;
 import game.backend.FigureDetector;
 import game.backend.Grid;
+import game.backend.cell.Cell;
+
+import java.util.function.Predicate;
 
 public class CandyMove extends Move {
 
@@ -34,5 +37,25 @@ public class CandyMove extends Move {
 			detector.removeFigure(i2, j2, f2);
 		}
 	}
+
+	@Override
+	public int cantOfCellsMatching(Predicate<Cell> condition) {
+		int cant = 0;
+		if (f1 != null) {
+			cant += detector.cantOfCellsMatching(i1, j1, f1, condition);
+		}
+		if (f2 != null) {
+			cant += detector.cantOfCellsMatching(i2, j2, f2, condition);
+		}
+
+		return cant;
+
+	}
+
+	/*public void removeFigureAndGetCount() {
+		//return detector.removeFigureAndGetCount(i1, j1, f1);
+		//return
+		detector.removeFigure(i1, j1, f1);
+	}*/
 
 }

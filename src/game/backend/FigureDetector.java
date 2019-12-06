@@ -1,10 +1,12 @@
 package game.backend;
 
+import game.backend.cell.Cell;
 import game.backend.element.Candy;
 import game.backend.element.CandyColor;
 import game.backend.element.Element;
 
 import java.awt.Point;
+import java.util.function.Predicate;
 
 public class FigureDetector {
 	
@@ -40,10 +42,24 @@ public class FigureDetector {
 		}
 		return acum;
 	}
+
+	public int cantOfCellsMatching(int i, int j, Figure f, Predicate<Cell> condition) {
+		int cant = 0;
+
+		if(condition.test(grid.getCell(i,j)))
+			cant++;
+
+		for (Point p: f.getPoints()) {
+			if(condition.test(grid.getCell(i + p.x, j + p.y)))
+				cant++;
+		}
+		return cant;
+	}
 	
 	public void removeFigure(int i, int j, Figure f) {
 		CandyColor color = ((Candy)grid.get(i, j)).getColor();
 		grid.clearContent(i, j);
+
 		if (f.hasReplacement()) {
 			grid.setContent(i, j, f.generateReplacement(color));
 		}
@@ -51,5 +67,6 @@ public class FigureDetector {
 			grid.clearContent(i + p.x, j + p.y);
 		}
 	}
+
 	
 }

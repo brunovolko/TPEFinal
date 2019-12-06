@@ -1,7 +1,11 @@
 package game.backend.move;
 
 import game.backend.Grid;
+import game.backend.cell.Cell;
 import game.backend.element.Element;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import java.util.function.Predicate;
 
 public abstract class Move {
 	
@@ -34,6 +38,10 @@ public abstract class Move {
 		}
 		return false;
 	}
+
+	public boolean isTypeOfMove(Class<?> clazz) {
+		return clazz.equals(this.getClass());
+	}
 	
 	protected boolean internalValidation() {
 		return true;
@@ -56,5 +64,7 @@ public abstract class Move {
 	}
 	
 	public abstract void removeElements();
+
+	public int cantOfCellsMatching(Predicate<Cell> condition) { throw new NotImplementedException(); }
 
 }

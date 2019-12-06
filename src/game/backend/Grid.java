@@ -24,7 +24,7 @@ public abstract class Grid {
 
 
 	private List<GameListener> listeners = new ArrayList<>();
-	private MoveMaker moveMaker;
+	protected MoveMaker moveMaker;
 	private FigureDetector figureDetector;
 	
 	protected abstract GameState newState();

@@ -1,12 +1,9 @@
 package game.backend.level;
 
-import game.backend.GameListener;
 import game.backend.GameState;
-import game.backend.Grid;
-import game.backend.cell.CandyGeneratorCell;
 import game.backend.cell.CandyGeneratorTimeProviderCell;
-import game.backend.cell.Cell;
-import game.backend.element.Wall;
+import game.backend.move.CandyMove;
+import game.backend.move.Move;
 
 public class Level3 extends Level1 {
 	
@@ -14,12 +11,15 @@ public class Level3 extends Level1 {
 	private final static int MAX_MOVES = 20;
 	private final static int TIME_PROVIDER_CANDIES = 10;
 	public final static int INITIAL_TIME_LIMIT = 30;
+	public final static int TIME_PER_PROVIDER_CELL = 10; //En segundos
 
-	private int remainingSeconds;
+	private static int remainingSeconds;
 
 	private boolean wasMoved;
 
 	private boolean firstTime = true;
+
+
 
 
 
@@ -41,15 +41,46 @@ public class Level3 extends Level1 {
 
 	@Override
 	public boolean tryMove(int i1, int j1, int i2, int j2) {
-		boolean ret;
-		if (ret = super.tryMove(i1, j1, i2, j2)) {
+		boolean movedOk;
+
+		Move move = moveMaker.getMove(i1, j1, i2, j2); /*En vez de llamar a super, sobreescribimos el método tryMove pues necesitamos tener control sobre el objeto move ya que
+														necesitamos hacer un chequeo de si hubieron y cuantos fueron caramelos timeProviders dentro del combo explotado*/
+
+		swapContent(i1, j1, i2, j2);
+		if (move.isValid()) {
+			if(move.isTypeOfMove(CandyMove.class)) {
+				int cantOfCells = move.cantOfCellsMatching(cell -> cell.isTimeProvider());
+
+				addSeconds(cantOfCells * TIME_PER_PROVIDER_CELL);
+
+				System.out.println("Se agregaron " + String.valueOf(cantOfCells * TIME_PER_PROVIDER_CELL) + " s");
+			}
+
+
+			move.removeElements();
+
+
+
+			fallElements();
+			movedOk = true;
 			state().addMove();
+		} else {
+			swapContent(i1, j1, i2, j2);
+			movedOk = false;
 		}
-		wasMoved = ret;
+
+
+		wasMoved = movedOk;
+
 		if(wasMoved)
 			System.out.println("Was moved");
-		return ret;
+
+		return movedOk;
 	}
+
+	private void addSeconds(int seconds) { remainingSeconds += seconds; }
+
+	public static int getRemainingSeconds() { return remainingSeconds; }
 	
 	protected class Level3State extends Level1State {
 		
@@ -57,10 +88,6 @@ public class Level3 extends Level1 {
 			super(requiredScore,maxMoves);
 		}
 
-		/*@Override
-		public boolean gameOver() {
-			return playerWon() || getMoves() >= maxMoves;
-		}*/
 
 		@Override
 		public String getPrintableScore(){
@@ -69,7 +96,6 @@ public class Level3 extends Level1 {
 				remainingSeconds++;
 				wasMoved = false;
 			}
-			System.out.println("Segun Level3 van " + remainingSeconds + " s.");
 			String returnableScore = "T. Restante: "+remainingSeconds + " - Puntaje: "+getScore();
 			if(remainingSeconds>0 && !firstTime)
 			{
@@ -82,11 +108,8 @@ public class Level3 extends Level1 {
 		}
 		@Override
 		public boolean gameOver() {
-			return remainingSeconds==0 || playerWon(); //HAY QUE REVISAR ESTO LOCO ----------------------------------------------------------------------------
+			return remainingSeconds==0 || playerWon();
 		}
-		/*public String getImprovedPrintableScore(){
-			return "T. Restante: "+remainingSeconds-- + " - Puntaje: "+getScore();
-		}*/
 	}
 
 }

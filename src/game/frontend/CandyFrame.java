@@ -43,7 +43,7 @@ public class CandyFrame extends VBox {
 
 		GameListener listener;
 		game.addGameListener(listener = new GameListener() {
-			int remainingSeconds;
+
 			Timer timer = new Timer();
 			@Override
 			public void gridUpdated() {
@@ -71,17 +71,15 @@ public class CandyFrame extends VBox {
 
 			@Override
 			public void timeUpdated(int newRemainingSeconds) { //Se usa si es necesario
-				remainingSeconds = newRemainingSeconds;
 
-				//timer.cancel(); //Por si ya se estaba ejecutando.
+
+
 				timer.scheduleAtFixedRate(new TimerTask() {
 					@Override
 					public void run() {
 						Platform.runLater(new TimerTask() {
 							@Override
 							public void run() {
-
-
 
 
 								if (game().isFinished()) {
@@ -92,7 +90,7 @@ public class CandyFrame extends VBox {
 									scorePanel.updateScore(game().getScore());
 								}
 
-								remainingSeconds--;
+
 							}
 						});
 					}
@@ -104,7 +102,7 @@ public class CandyFrame extends VBox {
 		listener.gridUpdated();
 
 		if(game.isLevel(Level3.class))
-			listener.timeUpdated(Level3.INITIAL_TIME_LIMIT);
+			listener.timeUpdated(Level3.getRemainingSeconds());
 		else
 			scorePanel.updateScore(game().getScore()); //Para mostrar el puntaje inicial de la forma adecuada a cada nivel
 
@@ -119,11 +117,11 @@ public class CandyFrame extends VBox {
 				if (newPoint != null) {
 					System.out.println("Get second = " +  newPoint);
 					String message;
-					if(game().tryMove((int)lastPoint.getX(), (int)lastPoint.getY(), (int)newPoint.getX(), (int)newPoint.getY())) {
-						System.out.println("Antes valia "+scorePanel.text);
+					if(!game().isFinished() && game().tryMove((int)lastPoint.getX(), (int)lastPoint.getY(), (int)newPoint.getX(), (int)newPoint.getY())) {
+						//Añadimos la condicion !game().isFinished() para evitar que una vez terminado se sigan sumando puntos
+
 						message = game().getScore();
 						scorePanel.updateScore(message);
-						System.out.println("Ahora vale "+scorePanel.text);
 					}
 
 
