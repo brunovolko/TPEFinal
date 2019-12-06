@@ -65,13 +65,19 @@ public class Level3 extends Level1 {
 		@Override
 		public String getPrintableScore(){
 			firstTime = false;
+			if(wasMoved) {
+				remainingSeconds++;
+				wasMoved = false;
+			}
 			System.out.println("Segun Level3 van " + remainingSeconds + " s.");
 			String returnableScore = "T. Restante: "+remainingSeconds + " - Puntaje: "+getScore();
-			if(remainingSeconds>0 && !wasMoved && !firstTime)
+			if(remainingSeconds>0 && !firstTime)
 			{
 					remainingSeconds--;
 			}
-			wasMoved = false;
+
+
+
 			return returnableScore;
 		}
 		@Override

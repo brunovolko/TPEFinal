@@ -7,7 +7,7 @@ import javafx.scene.layout.BorderPane;
 public class ScorePanel extends BorderPane {
 
 	private Label scoreLabel;
-	private String text;
+	public String text; /////////////PONER PRIVATE
 
 	public ScorePanel() {
 		setStyle("-fx-background-color: #5490ff");

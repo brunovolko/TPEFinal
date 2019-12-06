@@ -120,8 +120,10 @@ public class CandyFrame extends VBox {
 					System.out.println("Get second = " +  newPoint);
 					String message;
 					if(game().tryMove((int)lastPoint.getX(), (int)lastPoint.getY(), (int)newPoint.getX(), (int)newPoint.getY())) {
+						System.out.println("Antes valia "+scorePanel.text);
 						message = game().getScore();
 						scorePanel.updateScore(message);
+						System.out.println("Ahora vale "+scorePanel.text);
 					}
 
 
