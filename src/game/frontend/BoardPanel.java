@@ -55,8 +55,8 @@ public class BoardPanel extends TilePane {
 			cells[row][column].setEffect(lighting);
 		}
 		if(cell.isTimeProvider()) {
-			Text text = new Text("10");
-			text.setFont(Font.font("Impact", FontWeight.BOLD, 40));
+			Text text = new Text("+10");
+			text.setFont(Font.font("Impact", FontWeight.BOLD, 38));
 			text.setFill(Color.BLACK);
 
 			cells[row][column].getChildren().add(text);

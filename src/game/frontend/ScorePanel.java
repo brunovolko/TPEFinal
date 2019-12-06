@@ -25,13 +25,14 @@ public class ScorePanel extends BorderPane {
 	}
 
 	public void setWin(boolean win) {
-		if(!hasReceivedWin)
-			if(win)
+		if(!hasReceivedWin) {
+			if (win) {
 				updateScore(text + " Finished - Player Won!");
-			else
+				hasReceivedWin = true;
+			} else
 				updateScore(text + " Finished - Loser !");
-
-		hasReceivedWin = true;
+		}
+	//	hasReceivedWin = true;
 	}
 
 }

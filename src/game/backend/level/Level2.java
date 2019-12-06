@@ -80,8 +80,18 @@ public class Level2 extends Level1 {
 
 		@Override
 		public String getPrintableScore(){
-			return "Restantes: "+nonGoldenCells + " - Puntaje: "+getScore();
-		}
+			int movementsLeft = MAX_MOVES - getMoves();
+			StringBuilder toReturn = new StringBuilder();
+			if(movementsLeft>0) {
+				toReturn.append("Mov. restantes:");
+				toReturn.append(movementsLeft);
+				toReturn.append(" -");
+			}
+			toReturn.append("Celdas restantes: ");
+			toReturn.append(nonGoldenCells);
+			toReturn.append(" - Puntaje:");
+			toReturn.append(getScore());
+			return toReturn.toString();		}
 
 	}
 

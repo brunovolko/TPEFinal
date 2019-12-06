@@ -6,6 +6,8 @@ import game.backend.element.Nothing;
 import game.backend.element.timeProviderCandy;
 import game.backend.move.Direction;
 
+import java.util.function.Predicate;
+
 public class Cell {
 	
 	private Grid grid;
