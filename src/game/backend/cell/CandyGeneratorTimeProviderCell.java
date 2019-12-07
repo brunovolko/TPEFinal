@@ -7,7 +7,7 @@ import game.backend.element.CandyColor;
 import game.backend.element.Element;
 import game.backend.element.timeProviderCandy;
 
-public class CandyGeneratorTimeProviderCell extends Cell {
+public class CandyGeneratorTimeProviderCell extends CandyGeneratorCell {
 
     private int remainingTimeProviderCandies;
 
@@ -18,18 +18,8 @@ public class CandyGeneratorTimeProviderCell extends Cell {
     public CandyGeneratorTimeProviderCell(Grid grid, int timeProviderCandies) {
         super(grid);
         remainingTimeProviderCandies = timeProviderCandies;
-        //super.isTimeProvider(false);
     }
 
-    @Override
-    public boolean isMovable(){
-        return true;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
 
     @Override
     public Element getContent() {
@@ -42,26 +32,6 @@ public class CandyGeneratorTimeProviderCell extends Cell {
         }
 
         return new Candy(CandyColor.values()[typeOfCandy]);
-    }
-
-    @Override
-    public Element getAndClearContent() {
-        return getContent();
-    }
-
-    @Override
-    public boolean fallUpperContent() {
-        throw new IllegalStateException();
-    }
-
-    @Override
-    public void setContent(Element content) {
-        throw new IllegalStateException();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return false;
     }
 
 }

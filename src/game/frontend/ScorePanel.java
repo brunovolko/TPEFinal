@@ -8,10 +8,10 @@ public class ScorePanel extends BorderPane {
 
 	private Label scoreLabel;
 	private String text;
-	private boolean hasReceivedWin;
+
 
 	public ScorePanel() {
-		hasReceivedWin = false;
+
 		setStyle("-fx-background-color: #5490ff");
 		scoreLabel = new Label("0");
 		scoreLabel.setAlignment(Pos.CENTER);
@@ -25,14 +25,13 @@ public class ScorePanel extends BorderPane {
 	}
 
 	public void setWin(boolean win) {
-		if(!hasReceivedWin) {
+
 			if (win) {
 				updateScore(text + " Finished - Player Won!");
-				hasReceivedWin = true;
+
 			} else
 				updateScore(text + " Finished - Loser !");
-		}
-	//	hasReceivedWin = true;
+
 	}
 
 }

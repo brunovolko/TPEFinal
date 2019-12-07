@@ -23,7 +23,7 @@ public class Level2 extends Level1 {
 	
 	@Override
 	public boolean tryMove(int i1, int j1, int i2, int j2) {
-		Move move = super.getMoveMaker().getMove(i1, j1, i2, j2);
+		Move move = moveMaker.getMove(i1, j1, i2, j2);
 		swapContent(i1, j1, i2, j2);
 		if (move.isValid()) {
 			move.removeElements();
