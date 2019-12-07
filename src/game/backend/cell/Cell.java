@@ -106,5 +106,13 @@ public class Cell {
 		golden = true;
 	}
 
-	public boolean isTimeProvider() { return getContent() instanceof timeProviderCandy; }
+	public boolean isTimeProvider() {
+		/*
+		* Si bien sabemos que el uso del instanceof no es de buen estilo, nos parecio la mejor forma de detectar cuando un Candy es de tipo TimeProvider, ya que al no ser esta una propiedad
+		* de una celda (puesto que uno podría intercambiar un caramelo TimeProvider y cambiaría de celda) debe ser un atributo del caramelo. Sin embargo, casi todos los métodos reciben y retornan
+		* Element, por lo que sería necesario agregar un atributo tipo boolean a Element que sea si es o no TimeProvider, lo cual también nos parece que no es correcto. Element debe ser lo más
+		* genérico posible. Por lo tanto, decidimos hacerlo de esta forma.
+		* */
+		return getContent() instanceof timeProviderCandy;
+	}
 }

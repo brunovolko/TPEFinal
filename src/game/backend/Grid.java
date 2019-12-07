@@ -139,9 +139,6 @@ public abstract class Grid {
 		listeners.add(listener);
 	}
 
-	protected List<GameListener> getListeners() {
-		return listeners;
-	}
 	
 	public void wasUpdated(){
 		if (listeners.size() > 0) {
@@ -157,8 +154,5 @@ public abstract class Grid {
 		}
 	}
 
-	public MoveMaker getMoveMaker() {
-		return moveMaker;
-	}
 
 }
