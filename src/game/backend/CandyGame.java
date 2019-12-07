@@ -67,10 +67,6 @@ public class CandyGame implements GameListener {
 		//
 	}
 
-	@Override
-	public void timeUpdated(int remainingSeconds) {
-		//
-	}
 
 	public boolean isLevel(Class<?> clazz) {
 		return clazz.equals(levelClass);

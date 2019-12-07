@@ -8,6 +8,5 @@ public interface GameListener {
 	
 	void cellExplosion(Element e);
 
-	void timeUpdated(int remainingSeconds);
 	
 }

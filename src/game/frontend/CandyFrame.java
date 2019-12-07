@@ -30,6 +30,8 @@ public class CandyFrame extends VBox {
 	private Point2D lastPoint;
 	private CandyGame game;
 
+	private Timer timer;
+
 	public CandyFrame(CandyGame game, CustomStage primaryStage) {
 
 		this.game = game;
@@ -44,7 +46,7 @@ public class CandyFrame extends VBox {
 		GameListener listener;
 		game.addGameListener(listener = new GameListener() {
 
-			Timer timer = new Timer();
+//			Timer timer = new Timer();
 			@Override
 			public void gridUpdated() {
 
@@ -69,40 +71,12 @@ public class CandyFrame extends VBox {
 				//
 			}
 
-			@Override
-			public void timeUpdated(int newRemainingSeconds) { //Se usa si es necesario
-
-
-
-				timer.scheduleAtFixedRate(new TimerTask() {
-					@Override
-					public void run() {
-						Platform.runLater(new TimerTask() {
-							@Override
-							public void run() {
-
-
-								if (game().isFinished()) {
-									scorePanel.updateScore(game().getScore());
-									scorePanel.setWin(game().playerWon());
-									timer.cancel();
-								} else {
-									scorePanel.updateScore(game().getScore());
-								}
-
-
-							}
-						});
-					}
-				}, 0, 1000);
-
-			}
 		});
 
 		listener.gridUpdated();
 
 		if(game.isLevel(Level3.class))
-			listener.timeUpdated(Level3.getRemainingSeconds());
+			setTimeSchedule(Level3.getRemainingSeconds());
 		else
 			scorePanel.updateScore(game().getScore()); //Para mostrar el puntaje inicial de la forma adecuada a cada nivel
 
@@ -119,14 +93,13 @@ public class CandyFrame extends VBox {
 					String message;
 					if(!game().isFinished() && game().tryMove((int)lastPoint.getX(), (int)lastPoint.getY(), (int)newPoint.getX(), (int)newPoint.getY())) {
 						//Añadimos la condicion !game().isFinished() para evitar que una vez terminado se sigan sumando puntos
-
 						message = game().getScore();
 						scorePanel.updateScore(message);
 					}
 
 
-					if (game().isFinished() && !game.isLevel(Level3.class))
-						scorePanel.setWin(game().playerWon());
+					if (game().isFinished())
+						setWinOnFinished();
 
 
 					lastPoint = null;
@@ -138,6 +111,39 @@ public class CandyFrame extends VBox {
 
 	private CandyGame game() {
 		return game;
+	}
+
+	private void setWinOnFinished() {
+		scorePanel.updateScore(game().getScore());
+		scorePanel.setWin(game().playerWon());
+		if(timer != null)
+			timer.cancel();
+	}
+
+	private void setTimeSchedule(int newRemainingSeconds) { //Se usa si el nivel necesita manejo del tiempo
+		timer = new Timer();
+
+
+		timer.scheduleAtFixedRate(new TimerTask() {
+			@Override
+			public void run() {
+				Platform.runLater(new TimerTask() {
+					@Override
+					public void run() {
+
+
+						if (game().isFinished()) {
+							setWinOnFinished();
+						} else {
+							scorePanel.updateScore(game().getScore());
+						}
+
+
+					}
+				});
+			}
+		}, 0, 1000);
+
 	}
 
 	private Point2D translateCoords(double x, double y) {
