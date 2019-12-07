@@ -9,7 +9,7 @@ import game.backend.element.Wall;
 public class Level1 extends Grid {
 	
 	private final static int REQUIRED_SCORE = 5000;
-	private final static int MAX_MOVES = 34;
+	private final static int MAX_MOVES = 20;
 	
 	private Cell wallCell;
 	protected Cell candyGenCell; // Protected pues luego Level3 hereda de Level1 y la usa.

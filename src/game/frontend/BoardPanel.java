@@ -44,8 +44,6 @@ public class BoardPanel extends TilePane {
 
 		cells[row][column].getChildren().add(imgView);
 
-		/*cells[row][column].setImage(null);
-		cells[row][column].setImage(image);*/
 		if(cell.isGolden()) {
 			Light.Distant spotLight = new Light.Distant();
 			spotLight.setColor(Color.YELLOW);

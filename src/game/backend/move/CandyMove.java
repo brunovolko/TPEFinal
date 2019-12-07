@@ -52,10 +52,5 @@ public class CandyMove extends Move {
 
 	}
 
-	/*public void removeFigureAndGetCount() {
-		//return detector.removeFigureAndGetCount(i1, j1, f1);
-		//return
-		detector.removeFigure(i1, j1, f1);
-	}*/
 
 }

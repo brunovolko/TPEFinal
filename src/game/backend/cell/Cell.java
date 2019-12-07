@@ -14,7 +14,7 @@ public class Cell {
 	private Cell[] around = new Cell[Direction.values().length];
 	private Element content;
 	private boolean golden;
-	private boolean isTimeProvider;
+
 
 	
 	public Cell(Grid grid) {

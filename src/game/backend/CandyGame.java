@@ -61,11 +61,7 @@ public class CandyGame implements GameListener {
 	public void cellExplosion(Element e) {
 		state.addScore(e.getScore());
 	}
-	
-	@Override
-	public void gridUpdated() {
-		//
-	}
+
 
 
 	public boolean isLevel(Class<?> clazz) {

@@ -7,8 +7,7 @@ import game.backend.move.Move;
 
 public class Level3 extends Level1 {
 	
-	private final static int REQUIRED_SCORE = 550;
-	private final static int MAX_MOVES = 20;
+	private final static int REQUIRED_SCORE = 5000;
 	private final static int TIME_PROVIDER_CANDIES = 10;
 	public final static int INITIAL_TIME_LIMIT = 10;
 	public final static int TIME_PER_PROVIDER_CELL = 10; //En segundos
@@ -18,13 +17,6 @@ public class Level3 extends Level1 {
 	private boolean wasMoved;
 
 	private boolean firstTime = true;
-
-
-
-
-
-
-
 	public Level3() {
 		super();
 		candyGenCell = new CandyGeneratorTimeProviderCell(this, TIME_PROVIDER_CANDIES);
@@ -36,8 +28,8 @@ public class Level3 extends Level1 {
 	
 	@Override
 	protected GameState newState() {
-		return new Level3State(REQUIRED_SCORE, MAX_MOVES);
-	}
+		return new Level3State(REQUIRED_SCORE, 0);
+	} //le pasamos maxMoves como 0 pues en este nivel no nos interesa.
 	private void addSecondsIfTimeProvider(Move move){
 		if(move.isTypeOfMove(CandyMove.class))
 			addSeconds(move.cantOfCellsMatching(cell -> cell.isTimeProvider())*TIME_PER_PROVIDER_CELL);
@@ -48,44 +40,17 @@ public class Level3 extends Level1 {
 		Move move = moveMaker.getMove(i1, j1, i2, j2); /*Ejecutamos el getMove por separado ya que necesitamos hacer un chequeo de si hubieron y
 														cuantos fueron caramelos timeProviders dentro del combo explotado*/
 
-		/*addSecondsIfTimeProvider(move);
-
-		if(move.isValid())
-			System.out.println("is valid");
-		else
-			System.out.println("No is valid");
-			//addSecondsIfTimeProvider(move);
-
-
-		wasMoved = super.tryMove(i1, j1, i2, j2);
-
-		if(wasMoved)
-			System.out.println("Was moved");
-
-
-		return wasMoved;*/
-
 		boolean movedOk;
-
-
-
-
-
 		swapContent(i1, j1, i2, j2);
-		if (move.isValid()) {
+		if (movedOk=move.isValid()) {
 			addSecondsIfTimeProvider(move);
 			move.removeElements();
 			fallElements();
-			movedOk = true;
 			state().addMove();
 		} else {
 			swapContent(i1, j1, i2, j2);
-			movedOk = false;
 		}
-
-
 		wasMoved = movedOk;
-
 		if(wasMoved)
 			System.out.println("Was moved");
 
@@ -94,7 +59,6 @@ public class Level3 extends Level1 {
 
 	private void addSeconds(int seconds) { remainingSeconds += seconds; }
 
-	public static int getRemainingSeconds() { return remainingSeconds; }
 	
 	private class Level3State extends Level1State {
 		

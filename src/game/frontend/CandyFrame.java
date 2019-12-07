@@ -46,7 +46,7 @@ public class CandyFrame extends VBox {
 		GameListener listener;
 		game.addGameListener(listener = new GameListener() {
 
-//			Timer timer = new Timer();
+
 			@Override
 			public void gridUpdated() {
 
@@ -66,17 +66,13 @@ public class CandyFrame extends VBox {
 				timeLine.play();
 			}
 
-			@Override
-			public void cellExplosion(Element e) {
-				//
-			}
 
 		});
 
 		listener.gridUpdated();
 
 		if(game.isLevel(Level3.class))
-			setTimeSchedule(Level3.getRemainingSeconds());
+			setTimeSchedule();
 		else
 			scorePanel.updateScore(game().getScore()); //Para mostrar el puntaje inicial de la forma adecuada a cada nivel
 
@@ -120,7 +116,7 @@ public class CandyFrame extends VBox {
 			timer.cancel();
 	}
 
-	private void setTimeSchedule(int newRemainingSeconds) { //Se usa si el nivel necesita manejo del tiempo
+	private void setTimeSchedule() { //Se usa si el nivel necesita manejo del tiempo
 		timer = new Timer();
 
 

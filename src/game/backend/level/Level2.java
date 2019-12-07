@@ -10,7 +10,7 @@ import game.backend.move.Move;
 public class Level2 extends Level1 {
 	
 	private final static int REQUIRED_SCORE = 5000;
-	private final static int MAX_MOVES = 40;
+	private final static int MAX_MOVES = 20;
 
 
 	private int nonGoldenCells;
@@ -23,22 +23,14 @@ public class Level2 extends Level1 {
 	
 	@Override
 	public boolean tryMove(int i1, int j1, int i2, int j2) {
-		Move move = moveMaker.getMove(i1, j1, i2, j2);
-		swapContent(i1, j1, i2, j2);
-		if (move.isValid()) {
-			move.removeElements();
-			fallElements();
-			state().addMove();
-			if(move.validHorizontalMove())
+		boolean ret;
+		if(ret=super.tryMove(i1, j1, i2, j2)){
+			if(moveMaker.getMove(i1, j1, i2, j2).validHorizontalMove())
 				newGoldenCells(setGoldenRow(i1));
 			else
 				newGoldenCells(setGoldenColumn(j1));
-			return true;
-		} else {
-			swapContent(i1, j1, i2, j2);
-			return false;
 		}
-
+		return ret;
 	}
 
 	private int setGoldenRow(int row) {
@@ -86,7 +78,7 @@ public class Level2 extends Level1 {
 				toReturn.append("Mov. restantes:");
 				toReturn.append(movementsLeft);
 				toReturn.append(" -");
-				toReturn.append("Celdas restantes: - ");
+				toReturn.append("Celdas restantes:");
 				toReturn.append(nonGoldenCells);
 			}
 			toReturn.append(" Puntaje:");
