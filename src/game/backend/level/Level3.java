@@ -110,15 +110,16 @@ public class Level3 extends Level1 {
 				remainingSeconds++;
 				wasMoved = false;
 			}
-			String returnableScore = "T. Restante: "+remainingSeconds + " - Puntaje: "+getScore();
+			StringBuilder toReturn = new StringBuilder();
+			toReturn.append("T.Restante:");
+			toReturn.append(remainingSeconds);
+			toReturn.append(" - Puntaje: ");
+			toReturn.append(getScore());
 			if(remainingSeconds>0 && !firstTime)
 			{
 					remainingSeconds--;
 			}
-
-
-
-			return returnableScore;
+			return toReturn.toString();
 		}
 		@Override
 		public boolean gameOver() {

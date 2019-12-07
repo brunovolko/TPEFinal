@@ -2,7 +2,6 @@ package game.frontend;
 
 import game.backend.cell.Cell;
 import game.backend.element.Element;
-import game.backend.element.timeProviderCandy;
 import javafx.scene.effect.Light;
 import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
