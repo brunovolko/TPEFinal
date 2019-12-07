@@ -75,7 +75,7 @@ public class Level2 extends Level1 {
 
 		@Override
 		public boolean playerWon() {
-			return /*getScore() > requiredScore &&*/ nonGoldenCells == 0;
+			return nonGoldenCells == 0;
 		}
 
 		@Override

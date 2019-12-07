@@ -7,7 +7,7 @@ import game.backend.move.Move;
 
 public class Level3 extends Level1 {
 	
-	private final static int REQUIRED_SCORE = 5000;
+	private final static int REQUIRED_SCORE = 500;
 	private final static int MAX_MOVES = 20;
 	private final static int TIME_PROVIDER_CANDIES = 10;
 	public final static int INITIAL_TIME_LIMIT = 30;

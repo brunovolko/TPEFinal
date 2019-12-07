@@ -26,7 +26,7 @@ public class AppMenu extends MenuBar {
             }
         });
         goBackMenuItem.setOnAction(event -> {
-            primaryStage.originalStage.setScene(primaryStage.mainMenuScene);
+            primaryStage.getOriginalStage().setScene(primaryStage.getMainMenuScene());
 
         });
         file.getItems().addAll(goBackMenuItem, exitMenuItem);

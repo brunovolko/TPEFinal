@@ -125,8 +125,8 @@ public class CandyFrame extends VBox {
 					}
 
 
-				/*	if (game().isFinished())
-						scorePanel.setWin(game().playerWon());*/ //esto rompia el scorepanel cuando ganabas
+					if (game().isFinished() && !game.isLevel(Level3.class))
+						scorePanel.setWin(game().playerWon());
 
 
 					lastPoint = null;

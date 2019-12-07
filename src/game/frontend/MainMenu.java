@@ -23,8 +23,8 @@ public class MainMenu  {
     private static void playLevel (CustomStage primaryStage, CandyGame level){
         CandyFrame levelGameFrame = new CandyFrame(level, primaryStage);
         Scene levelScene = new Scene(levelGameFrame);
-        primaryStage.originalStage.setScene(levelScene);
-        primaryStage.originalStage.show();
+        primaryStage.getOriginalStage().setScene(levelScene);
+        primaryStage.getOriginalStage().show();
     }
 
     public static VBox getFrame(CustomStage primaryStage) {

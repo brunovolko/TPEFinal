@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 
 public class GameApp extends Application {
 
-	Scene mainMenuScene;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -17,11 +16,8 @@ public class GameApp extends Application {
 	@Override
 	public void start(Stage originalStage) {
 		CustomStage primaryStage = new CustomStage(originalStage);
-
 		originalStage.setResizable(false);
-
-
-		originalStage.setScene(primaryStage.mainMenuScene);
+		originalStage.setScene(primaryStage.getMainMenuScene());
 		originalStage.show();
 
 

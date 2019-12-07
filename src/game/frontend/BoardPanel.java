@@ -16,7 +16,7 @@ import javafx.scene.text.Text;
 
 public class BoardPanel extends TilePane {
 
-	//private ImageView[][] cells;
+
 	private StackPane[][] cells;
 	private ImageManager images;
 

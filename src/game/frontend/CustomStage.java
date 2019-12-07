@@ -4,9 +4,17 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class CustomStage {
-    Stage originalStage;
+    private Stage originalStage;
 
-    Scene mainMenuScene;
+    public Stage getOriginalStage() {
+        return originalStage;
+    }
+
+    public Scene getMainMenuScene() {
+        return mainMenuScene;
+    }
+
+    private  Scene mainMenuScene;
 
     public CustomStage(Stage originalStage) {
         this.originalStage = originalStage;
