@@ -10,7 +10,7 @@ import game.backend.move.Move;
 public class Level2 extends Level1 {
 	
 	private final static int REQUIRED_SCORE = 5000;
-	private final static int MAX_MOVES = 20;
+	private final static int MAX_MOVES = 40;
 
 
 	private int nonGoldenCells;
@@ -82,14 +82,14 @@ public class Level2 extends Level1 {
 		public String getPrintableScore(){
 			int movementsLeft = MAX_MOVES - getMoves();
 			StringBuilder toReturn = new StringBuilder();
-			if(movementsLeft>0) {
+			if(!gameOver()) {
 				toReturn.append("Mov. restantes:");
 				toReturn.append(movementsLeft);
 				toReturn.append(" -");
+				toReturn.append("Celdas restantes: - ");
+				toReturn.append(nonGoldenCells);
 			}
-			toReturn.append("Celdas restantes: ");
-			toReturn.append(nonGoldenCells);
-			toReturn.append(" - Puntaje:");
+			toReturn.append(" Puntaje:");
 			toReturn.append(getScore());
 			return toReturn.toString();		}
 
