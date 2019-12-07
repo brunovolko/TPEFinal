@@ -25,12 +25,10 @@ public class CandyGeneratorTimeProviderCell extends CandyGeneratorCell {
     public Element getContent() {
         int typeOfCandy = (int)(Math.random() * CandyColor.values().length);
         int timeProviderNumber = (int)(Math.random() * 20); // probabilidad de que genere un providerCell
-
         if(remainingTimeProviderCandies > 0 && timeProviderNumber == 0) { //Elegimos al 0 como al numero que debe salir para ser timeProvider
             remainingTimeProviderCandies--;
             return new timeProviderCandy(CandyColor.values()[typeOfCandy]);
         }
-
         return new Candy(CandyColor.values()[typeOfCandy]);
     }
 

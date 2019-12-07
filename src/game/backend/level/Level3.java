@@ -96,9 +96,9 @@ public class Level3 extends Level1 {
 
 	public static int getRemainingSeconds() { return remainingSeconds; }
 	
-	protected class Level3State extends Level1State {
+	private class Level3State extends Level1State {
 		
-		public Level3State(long requiredScore, int maxMoves) {
+		 Level3State(long requiredScore, int maxMoves) {
 			super(requiredScore,maxMoves);
 		}
 
